@@ -1,8 +1,9 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.mycompany.p1_lfp;
+
+import com.mycompany.p1_lfp.automata.editar.EditarFrontend;
 
 /**
  *
@@ -11,6 +12,7 @@ package com.mycompany.p1_lfp;
 public class P1_LFP {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        EditarFrontend inicio = new EditarFrontend();
+        inicio.setVisible(true);
     }
 }
