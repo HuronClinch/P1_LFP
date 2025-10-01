@@ -12,7 +12,7 @@ import com.mycompany.p1_lfp.automata.editar.EditarFrontend;
 public class P1_LFP {
 
     public static void main(String[] args) {
-        EditarFrontend inicio = new EditarFrontend();
+        EditarFrontend inicio = new EditarFrontend("");
         inicio.setVisible(true);
     }
 }
