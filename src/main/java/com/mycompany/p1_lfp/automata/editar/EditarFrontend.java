@@ -20,10 +20,14 @@ public class EditarFrontend extends javax.swing.JFrame {
     /**
      * Creates new form EditarFrontend
      */
-    public EditarFrontend() {
+    public EditarFrontend(String TEXT) {
         initComponents();
+        textoPanel.setText(TEXT);//Definir el tenxto en cuadro entre pestanas
+        setResizable(false);
         setLocationRelativeTo(null);
-        BACKEND.colorear();
+        setSize(1330, 715);
+        BACKEND.colorear();//Generar funcion para accion
+        BACKEND.analizarTexto();//Analizar si hay tento
     }
 
     /**
@@ -44,7 +48,7 @@ public class EditarFrontend extends javax.swing.JFrame {
         BtAnalizar = new javax.swing.JButton();
         BtGenerarAutomata = new javax.swing.JButton();
         BtDiagramaTransiciones = new javax.swing.JButton();
-        textIndicacion = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         VisorMovimientos = new javax.swing.JTextPane();
 
@@ -91,39 +95,29 @@ public class EditarFrontend extends javax.swing.JFrame {
             }
         });
 
-        textIndicacion.setText("jLabel2");
-
-        VisorMovimientos.setFocusable(false);
-        jScrollPane2.setViewportView(VisorMovimientos);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BtAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane1)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(BtReporteToken, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BtReporteErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BtGenerarAutomata, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BtDiagramaTransiciones))
-                                    .addComponent(jLabel1))
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))))
+                        .addComponent(BtAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(textIndicacion)))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(BtReporteToken, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtReporteErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtGenerarAutomata, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtDiagramaTransiciones))
+                            .addComponent(jLabel1))
+                        .addGap(0, 8, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,12 +125,8 @@ public class EditarFrontend extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textIndicacion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtReporteToken)
                     .addComponent(BtReporteErrores)
@@ -144,6 +134,26 @@ public class EditarFrontend extends javax.swing.JFrame {
                     .addComponent(BtDiagramaTransiciones))
                 .addGap(18, 18, 18)
                 .addComponent(BtAnalizar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        VisorMovimientos.setFocusable(false);
+        jScrollPane2.setViewportView(VisorMovimientos);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
 
@@ -154,23 +164,31 @@ public class EditarFrontend extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 30, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtReporteTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtReporteTokenActionPerformed
+        this.setVisible(false);
         BACKEND.mostrarReporteTokens();
     }//GEN-LAST:event_BtReporteTokenActionPerformed
 
     private void BtReporteErroresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtReporteErroresActionPerformed
+        this.setVisible(false);
         BACKEND.mostrarReporteErrores();
     }//GEN-LAST:event_BtReporteErroresActionPerformed
 
@@ -179,7 +197,8 @@ public class EditarFrontend extends javax.swing.JFrame {
     }//GEN-LAST:event_BtAnalizarActionPerformed
 
     private void BtGenerarAutomataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtGenerarAutomataActionPerformed
-        // TODO add your handling code here:
+        String contenido = textoPanel.getText();//Obtener contenido de panel
+        System.out.println(contenido);
     }//GEN-LAST:event_BtGenerarAutomataActionPerformed
 
     private void BtDiagramaTransicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtDiagramaTransicionesActionPerformed
@@ -193,11 +212,14 @@ public class EditarFrontend extends javax.swing.JFrame {
     private javax.swing.JButton BtReporteErrores;
     private javax.swing.JButton BtReporteToken;
     private javax.swing.JTextPane VisorMovimientos;
+    private javax.swing.JTextPane VisorMovimientos1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel textIndicacion;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextPane textoPanel;
     // End of variables declaration//GEN-END:variables
 
@@ -205,12 +227,7 @@ public class EditarFrontend extends javax.swing.JFrame {
         return textoPanel;
     }
 
-    public JLabel getTextIndicacion() {
-        return textIndicacion;
-    }
-
     public JTextPane getVisorMovimientos() {
         return VisorMovimientos;
     }
-    
 }
