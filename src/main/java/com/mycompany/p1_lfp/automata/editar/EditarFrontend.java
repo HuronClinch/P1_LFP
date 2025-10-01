@@ -6,6 +6,7 @@ package com.mycompany.p1_lfp.automata.editar;
 
 import com.mycompany.p1_lfp.buscar.Buscar;
 import java.awt.Dimension;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -32,6 +33,7 @@ public class EditarFrontend extends javax.swing.JFrame {
         setSize(1330, 715);
         BACKEND.colorear();//Generar funcion para accion
         BACKEND.analizarTexto();//Analizar si hay tento
+        informacionPosicion.setText("Fila: " + 0 + ", Columna: " + 0);
     }
 
     /**
@@ -54,7 +56,9 @@ public class EditarFrontend extends javax.swing.JFrame {
         textoBusqueda = new javax.swing.JTextField();
         BtBuscar = new javax.swing.JButton();
         BtBuscar1 = new javax.swing.JButton();
-        BtBuscar2 = new javax.swing.JButton();
+        BtExportar = new javax.swing.JButton();
+        BtImportar = new javax.swing.JButton();
+        informacionPosicion = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         VisorMovimientos = new javax.swing.JTextPane();
@@ -114,12 +118,28 @@ public class EditarFrontend extends javax.swing.JFrame {
             }
         });
 
-        BtBuscar2.setText("Buscar");
-        BtBuscar2.addActionListener(new java.awt.event.ActionListener() {
+        BtExportar.setText("Exportar");
+        BtExportar.setMaximumSize(new java.awt.Dimension(90, 24));
+        BtExportar.setMinimumSize(new java.awt.Dimension(90, 24));
+        BtExportar.setPreferredSize(new java.awt.Dimension(90, 24));
+        BtExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtBuscar2ActionPerformed(evt);
+                BtExportarActionPerformed(evt);
             }
         });
+
+        BtImportar.setText("Importar");
+        BtImportar.setMaximumSize(new java.awt.Dimension(90, 24));
+        BtImportar.setMinimumSize(new java.awt.Dimension(90, 24));
+        BtImportar.setPreferredSize(new java.awt.Dimension(90, 24));
+        BtImportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtImportarActionPerformed(evt);
+            }
+        });
+
+        informacionPosicion.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        informacionPosicion.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,44 +152,57 @@ public class EditarFrontend extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(BtReporteToken, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(BtReporteErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(BtGenerarAutomata, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(BtDiagramaTransiciones))
+                                .addComponent(informacionPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
                                 .addComponent(jLabel1)
-                                .addGap(216, 216, 216)
-                                .addComponent(BtBuscar2)
-                                .addGap(161, 161, 161))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(BtReporteToken, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BtReporteErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BtGenerarAutomata, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BtDiagramaTransiciones))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(BtBuscar1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtBuscar)
-                                .addGap(18, 18, 18)
-                                .addComponent(textoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(BtImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BtExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(BtBuscar1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BtBuscar)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(textoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(5, 5, 5)))
                         .addGap(0, 11, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(BtBuscar2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtBuscar)
-                    .addComponent(BtBuscar1))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtExportar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtImportar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtBuscar)
+                            .addComponent(BtBuscar1)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(informacionPosicion)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtReporteToken)
                     .addComponent(BtReporteErrores)
@@ -208,12 +241,12 @@ public class EditarFrontend extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 30, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -247,19 +280,25 @@ public class EditarFrontend extends javax.swing.JFrame {
         textoPanel.getHighlighter().removeAllHighlights();
     }//GEN-LAST:event_BtBuscar1ActionPerformed
 
-    private void BtBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtBuscar2ActionPerformed
+    private void BtExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtExportarActionPerformed
+        BACKEND.exportarTextoEdicion();
+    }//GEN-LAST:event_BtExportarActionPerformed
+
+    private void BtImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtImportarActionPerformed
+        BACKEND.subirTexto();
+    }//GEN-LAST:event_BtImportarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtBuscar;
     private javax.swing.JButton BtBuscar1;
-    private javax.swing.JButton BtBuscar2;
     private javax.swing.JButton BtDiagramaTransiciones;
+    private javax.swing.JButton BtExportar;
     private javax.swing.JButton BtGenerarAutomata;
+    private javax.swing.JButton BtImportar;
     private javax.swing.JButton BtReporteErrores;
     private javax.swing.JButton BtReporteToken;
     private javax.swing.JTextPane VisorMovimientos;
+    private javax.swing.JLabel informacionPosicion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -281,4 +320,7 @@ public class EditarFrontend extends javax.swing.JFrame {
         return textoBusqueda;
     }
 
+    public JLabel getInformacionPosicion() {
+        return informacionPosicion;
+    }
 }

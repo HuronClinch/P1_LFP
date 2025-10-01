@@ -9,12 +9,17 @@ import com.mycompany.p1_lfp.automata.Token;
 import com.mycompany.p1_lfp.buscar.Buscar;
 import com.mycompany.p1_lfp.generacion_automata.Movimiento;
 import com.mycompany.p1_lfp.reporte.ReporteFrontend;
+import com.mycompany.p1_lfp.utileria.ArchivoTexto;
+import com.mycompany.p1_lfp.utileria.GuardarArchivo;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,6 +44,7 @@ public class EditarBackend {
             @Override
             public void keyReleased(KeyEvent e) {
                 analizarTexto();
+                actualizarPosicion();
             }
         });
     }
@@ -85,6 +91,27 @@ public class EditarBackend {
         PANEL.getVisorMovimientos().setText(sb.toString());
     }
 
+    private void actualizarPosicion() {
+        int pos = PANEL.getTextoPanel().getCaretPosition();
+        int fila = 0;
+        int columna = 0;
+
+        try {
+            String texto = PANEL.getTextoPanel().getText(0, pos);
+            for (int i = 0; i < texto.length(); i++) {
+                if (texto.charAt(i) == '\n') {
+                    fila++;
+                    columna = 0;
+                } else {
+                    columna++;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        PANEL.getInformacionPosicion().setText("Fila: " + fila + ", Columna: " + columna);
+    }
+
     protected void mostrarReporteTokens() {//Mostrar reporte para tokens
         if (ultimosTokens != null) {
             ReporteFrontend reporte = new ReporteFrontend(PANEL.getTextoPanel().getText(), true, ultimosTokens);
@@ -99,7 +126,33 @@ public class EditarBackend {
         }
     }
 
-    protected void buscarPatron() {
+    protected void buscarPatron() {//Funcion para bucar por patron
         buscarXPalabra.buscarYResaltar();
+    }
+
+    protected void subirTexto() {
+        JFileChooser archivoSeleccionado = new JFileChooser();
+        File archivo;
+        if (archivoSeleccionado.showDialog(null, "Abrir") == JFileChooser.APPROVE_OPTION) {
+            archivo = archivoSeleccionado.getSelectedFile();//obtener la direccion del archivo
+            String path = "" + archivo;//Guardar la direccion en archivo 
+            ArchivoTexto leerArchivo = new ArchivoTexto((String) path);//Crear path para el archivo
+            PANEL.getTextoPanel().setText(leerArchivo.leerTextoConScanner());
+            leerArchivo.leerTextoConScanner();//Leer archivo
+        }
+        analizarTexto();
+    }
+
+    protected void exportarTextoEdicion() {
+        String codigo = PANEL.getTextoPanel().getText();
+        if (codigo.trim().length() == 0) {//No hay texto
+            JOptionPane.showMessageDialog(null, """
+                                                No se puede exportar codigo
+                                                No tiene codigo escrito""");
+            return;
+        }
+        GuardarArchivo archivo = new GuardarArchivo("Codigo.txt");//Si no hay errores guardar
+        archivo.escribirConWriter(codigo);
+        JOptionPane.showMessageDialog(null, "Se exporto correctamente el codigo escrito");
     }
 }
