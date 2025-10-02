@@ -27,7 +27,7 @@ public class ReporteFrontend extends javax.swing.JFrame {
 //        initComponents();
 //        reporte = new ReporteBackend(this, tokenValido, LISTA);
 //    }
-    public ReporteFrontend(String TEXT, boolean tokenValido, List<Token> LISTA) {
+    public ReporteFrontend(String TEXT, int tokenValido, List<Token> LISTA) {
         this.TEXT = TEXT;
         initComponents();
         setResizable(false);
