@@ -77,7 +77,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="BtReporteErrores" min="-2" pref="202" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="BtGenerarAutomata" min="-2" pref="202" max="-2" attributes="0"/>
+                                      <Component id="BtRecuentoLexema" min="-2" pref="202" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="BtDiagramaTransiciones" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -140,7 +140,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="BtReporteToken" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BtReporteErrores" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="BtGenerarAutomata" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BtRecuentoLexema" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BtDiagramaTransiciones" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -192,12 +192,12 @@
             <Property name="text" type="java.lang.String" value="Consola Analizador lexico"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="BtGenerarAutomata">
+        <Component class="javax.swing.JButton" name="BtRecuentoLexema">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Generar Automata"/>
+            <Property name="text" type="java.lang.String" value="Contador Lexemas"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtGenerarAutomataActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtRecuentoLexemaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BtDiagramaTransiciones">

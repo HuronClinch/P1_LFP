@@ -5,6 +5,7 @@
 package com.mycompany.p1_lfp.automata.editar;
 
 import com.mycompany.p1_lfp.automata.Automata;
+import com.mycompany.p1_lfp.automata.TipoToken;
 import com.mycompany.p1_lfp.automata.Token;
 import com.mycompany.p1_lfp.buscar.Buscar;
 import com.mycompany.p1_lfp.generacion_automata.Movimiento;
@@ -114,14 +115,35 @@ public class EditarBackend {
 
     protected void mostrarReporteTokens() {//Mostrar reporte para tokens
         if (ultimosTokens != null) {
-            ReporteFrontend reporte = new ReporteFrontend(PANEL.getTextoPanel().getText(), true, ultimosTokens);
+            ReporteFrontend reporte = new ReporteFrontend(PANEL.getTextoPanel().getText(), 0, ultimosTokens);
             reporte.setVisible(true);
         }
     }
 
     protected void mostrarReporteErrores() {//Mostrar reporte para tokens malos
         if (ultimosTokens != null) {
-            ReporteFrontend reporte = new ReporteFrontend(PANEL.getTextoPanel().getText(), false, ultimosTokens);
+            ReporteFrontend reporte = new ReporteFrontend(PANEL.getTextoPanel().getText(), 1, ultimosTokens);
+            reporte.setVisible(true);
+        }
+    }
+
+    protected void mostrarRecuento() {//mostrar recuento de lexemas
+        boolean hayErrores = false;
+        for (Token t : ultimosTokens) {
+            if (t.getTipo() == TipoToken.ERROR) {//Comprobar que no hayan errores 
+                hayErrores = true;
+                break;
+            }
+        }
+
+        if (hayErrores) {
+            JOptionPane.showMessageDialog(null, "El recuento de lexemas solo está disponible cuando NO hay errores.");
+            return;
+        }
+        PANEL.setVisible(false);
+
+        if (ultimosTokens != null) {
+            ReporteFrontend reporte = new ReporteFrontend(PANEL.getTextoPanel().getText(), 2, ultimosTokens);
             reporte.setVisible(true);
         }
     }

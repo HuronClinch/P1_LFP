@@ -51,7 +51,7 @@ public class EditarFrontend extends javax.swing.JFrame {
         BtReporteToken = new javax.swing.JButton();
         BtReporteErrores = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        BtGenerarAutomata = new javax.swing.JButton();
+        BtRecuentoLexema = new javax.swing.JButton();
         BtDiagramaTransiciones = new javax.swing.JButton();
         textoBusqueda = new javax.swing.JTextField();
         BtBuscar = new javax.swing.JButton();
@@ -90,10 +90,10 @@ public class EditarFrontend extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
         jLabel1.setText("Consola Analizador lexico");
 
-        BtGenerarAutomata.setText("Generar Automata");
-        BtGenerarAutomata.addActionListener(new java.awt.event.ActionListener() {
+        BtRecuentoLexema.setText("Contador Lexemas");
+        BtRecuentoLexema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtGenerarAutomataActionPerformed(evt);
+                BtRecuentoLexemaActionPerformed(evt);
             }
         });
 
@@ -159,7 +159,7 @@ public class EditarFrontend extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(BtReporteErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(BtGenerarAutomata, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BtRecuentoLexema, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(BtDiagramaTransiciones))
                                 .addComponent(informacionPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -206,7 +206,7 @@ public class EditarFrontend extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtReporteToken)
                     .addComponent(BtReporteErrores)
-                    .addComponent(BtGenerarAutomata)
+                    .addComponent(BtRecuentoLexema)
                     .addComponent(BtDiagramaTransiciones))
                 .addContainerGap())
         );
@@ -263,10 +263,9 @@ public class EditarFrontend extends javax.swing.JFrame {
         BACKEND.mostrarReporteErrores();
     }//GEN-LAST:event_BtReporteErroresActionPerformed
 
-    private void BtGenerarAutomataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtGenerarAutomataActionPerformed
-        String contenido = textoPanel.getText();//Obtener contenido de panel
-        System.out.println(contenido);
-    }//GEN-LAST:event_BtGenerarAutomataActionPerformed
+    private void BtRecuentoLexemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRecuentoLexemaActionPerformed
+        BACKEND.mostrarRecuento();
+    }//GEN-LAST:event_BtRecuentoLexemaActionPerformed
 
     private void BtDiagramaTransicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtDiagramaTransicionesActionPerformed
         // TODO add your handling code here:
@@ -293,8 +292,8 @@ public class EditarFrontend extends javax.swing.JFrame {
     private javax.swing.JButton BtBuscar1;
     private javax.swing.JButton BtDiagramaTransiciones;
     private javax.swing.JButton BtExportar;
-    private javax.swing.JButton BtGenerarAutomata;
     private javax.swing.JButton BtImportar;
+    private javax.swing.JButton BtRecuentoLexema;
     private javax.swing.JButton BtReporteErrores;
     private javax.swing.JButton BtReporteToken;
     private javax.swing.JTextPane VisorMovimientos;
